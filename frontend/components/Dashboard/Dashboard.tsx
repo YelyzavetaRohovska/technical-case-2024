@@ -22,6 +22,8 @@ export const Dashboard = () => {
   }, [searchText, update]);
 
   const addRandomUser = useCallback(() => {
+    setSearchText("");
+
     // Mocked data
     const userData: Omit<UserActivity, 'id'> = {
       userId: Math.floor(Math.random() * 4) + 1,
@@ -53,7 +55,7 @@ export const Dashboard = () => {
       <button
         className="text-white bg-zinc-700 border-gray-400 text-lg p-2 mt-4 rounded-md hover:bg-zinc-600 hover:border-slate-500  active:bg-zinc-500 active:border-slate-400"
         onClick={addRandomUser}
-      >Add random User</button>
+      >Add random User Activity</button>
     </div>
   );
 };

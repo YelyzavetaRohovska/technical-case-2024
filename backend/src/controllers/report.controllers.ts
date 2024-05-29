@@ -4,12 +4,13 @@ import { db } from '../database';
 export function getReport(text: string = ""): Report {
   const usersReport: Report = {};
 
-  console.log(db.userActivities.find())
-
   db.userActivities.find().forEach(({ id, userId, activityId }) => {
-    console.log("id: ", id)
     if (!usersReport[userId]) {
       const user = db.users.find({ id: userId })[0];
+
+      if (text && !user.name.toLowerCase().includes(text.toLowerCase())) {
+        return;
+      }
       
       usersReport[userId] = {
         userName: "",
@@ -22,10 +23,6 @@ export function getReport(text: string = ""): Report {
       };
 
       usersReport[userId].userName = user.name;
-    }
-
-    if (text && !usersReport[userId].userName.toLowerCase().includes(text.toLowerCase())) {
-      return;
     }
 
     const activity = db.activities.find({ id: activityId })[0];
