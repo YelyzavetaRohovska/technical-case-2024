@@ -7,5 +7,5 @@ export default function DashboardPage() {
         <h1 className="text-2xl font-bold text-center">Dashboard</h1>
       </div>
     </main>
-  )
+  );
 }
