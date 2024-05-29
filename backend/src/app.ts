@@ -1,19 +1,16 @@
-import express from 'express'
-import { db } from './database'
+import express from 'express';
+import helmet from 'helmet';
+import cors from 'cors';
+
+const port = 8000;
 
 const app = express()
-const port = 8000
 
-app.get('/', (_req, res) => {
-  res.status(200).json({ message: 'Hello, World!' })
-})
-
-app.get('/users', (_req, res) => {
-    const users = db.getUsers()
-    res.status(200).json(users)
-})
+app.use(cors());
+app.use(helmet());
+app.use(express.json());
 
 app.listen(port, () => {
-  console.log(`Server is running on http://localhost:${port}`)
+  console.log(`Server is running on http://localhost:${port}`);
 })
 
